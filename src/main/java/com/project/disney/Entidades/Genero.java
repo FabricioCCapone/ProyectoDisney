@@ -27,4 +27,48 @@ public class Genero {
     
     @OneToMany
     private List<Pelicula> peliculasAsociadas;
+
+    public Genero() {
+    }
+
+    public Genero(String id, String nombre, Imagen imagen, List<Pelicula> peliculasAsociadas) {
+        this.id = id;
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.peliculasAsociadas = peliculasAsociadas;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
+
+    public List<Pelicula> getPeliculasAsociadas() {
+        return peliculasAsociadas;
+    }
+
+    public void setPeliculasAsociadas(List<Pelicula> peliculasAsociadas) {
+        this.peliculasAsociadas = peliculasAsociadas;
+    }
+    
+    
 }

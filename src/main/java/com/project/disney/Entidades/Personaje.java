@@ -30,4 +30,75 @@ public class Personaje {
     
     @OneToMany
     private List<Pelicula> aparicion;
+
+    public Personaje() {
+    }
+
+    public Personaje(String id, Imagen imagen, String nombre, Integer edad, Float peso, String historia, List<Pelicula> aparicion) {
+        this.id = id;
+        this.imagen = imagen;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.peso = peso;
+        this.historia = historia;
+        this.aparicion = aparicion;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public Float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Float peso) {
+        this.peso = peso;
+    }
+
+    public String getHistoria() {
+        return historia;
+    }
+
+    public void setHistoria(String historia) {
+        this.historia = historia;
+    }
+
+    public List<Pelicula> getAparicion() {
+        return aparicion;
+    }
+
+    public void setAparicion(List<Pelicula> aparicion) {
+        this.aparicion = aparicion;
+    }
+    
+    
 }
