@@ -7,6 +7,8 @@ package com.project.disney.Repositorios;
 
 import com.project.disney.Entidades.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Repository;
  * @author fabri
  */
 @Repository
-public interface UsuarioRepositorio extends JpaRepository<Usuario, String>{
-    
+public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
+
+    @Query("SELECT u FROM Usuario u where usuario = :usuario")
+    public Usuario findByUsername(@Param("usuario") String usuario);
 }

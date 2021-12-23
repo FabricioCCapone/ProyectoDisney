@@ -1,5 +1,6 @@
 package com.project.disney.Entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Capoun
  */
 @Entity
-public class Pelicula {
+public class Pelicula implements Serializable{
 
     @Id
     @GeneratedValue(generator = "uuid")

@@ -1,15 +1,13 @@
 package com.project.disney.Entidades;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario {
+public class Usuario implements Serializable{
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -18,9 +16,6 @@ public class Usuario {
     
     private String usuario;
     private String contrasena;
-
-//    @Enumerated(EnumType.STRING)
-//    private Rol rol;
 
     public Usuario() {
     }

@@ -1,5 +1,6 @@
 package com.project.disney.Entidades;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Capoun
  */
 @Entity
-public class Personaje {
+public class Personaje implements Serializable{
 
     @Id
     @GeneratedValue(generator = "uuid")
