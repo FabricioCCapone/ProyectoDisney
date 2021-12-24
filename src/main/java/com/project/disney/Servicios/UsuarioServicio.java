@@ -23,33 +23,36 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  */
 @Service
 public class UsuarioServicio implements UserDetailsService {
-    
+
     @Autowired
     UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
-    public Usuario saveUser(Usuario usuario){
+    public Usuario saveUser(Usuario usuario) {
         return usuarioRepositorio.save(usuario);
     }
-    
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
             Usuario usuario = usuarioRepositorio.findByUsername(username);
             User user;
 
-            List<GrantedAuthority> authorities = new ArrayList<>();
+            if (usuario != null) {
+                List<GrantedAuthority> authorities = new ArrayList<>();
 
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("usuario", usuario);
+                ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+                HttpSession session = attr.getRequest().getSession(true);
+                session.setAttribute("usuario", usuario);
 
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-            
-            return new User(username, usuario.getContrasena(), authorities);
+                authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+                return new User(username, usuario.getContrasena(), authorities);
+            }else{
+                throw new Exception();
+            }
         } catch (Exception e) {
             throw new UsernameNotFoundException("El usuario solicitado no existe");
         }
     }
-
 }
