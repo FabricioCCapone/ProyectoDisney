@@ -3,6 +3,7 @@ package com.project.disney.Entidades;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Pelicula implements Serializable{
     private Date fechaCreacion;
     private Integer calificacion;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Personaje> personajesAsociados;
 
     public Pelicula() {
