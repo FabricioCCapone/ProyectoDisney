@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -24,8 +25,16 @@ public class MovieController {
     PeliculaServicio peliculaServicio;
 
     @GetMapping()
-    public List<Pelicula> listPelicula() {
-        return peliculaServicio.listAllPeliculas();
+    public List<Pelicula> listPelicula(@RequestParam(required = false) String name, @RequestParam(required = false) String genre, @RequestParam(required = false) String order) {
+        if (name != null) {
+            return peliculaServicio.findByNombre(name);
+        } else if (genre != null) {
+            return peliculaServicio.findByGenero(genre);
+        } else if (order != null) {
+            return peliculaServicio.orderPeliculas(order);
+        } else {
+            return peliculaServicio.listAllPeliculas();
+        }
     }
 
     @PostMapping("/register")

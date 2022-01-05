@@ -17,6 +17,9 @@ public class PeliculaServicio {
 
     @Autowired
     PeliculaRepositorio peliculaRepositorio;
+   
+    @Autowired
+    GeneroServicio generoServicio;
 
     public List<Pelicula> listAllPeliculas() {
         List<Pelicula> infoCompleta = peliculaRepositorio.listAllPeliculas();
@@ -29,6 +32,25 @@ public class PeliculaServicio {
             infoPedida.add(pelicula);
         }
         return infoPedida;
+    }
+
+    public List<Pelicula> findByNombre(String nombre) {
+        nombre = nombre + "%";
+        return peliculaRepositorio.findByNombre(nombre);
+    }
+
+    public List<Pelicula> findByGenero(String generoId) {
+        return generoServicio.findByGenero(generoId);
+    }
+
+    public List<Pelicula> orderPeliculas(String orden) {
+        if(orden.equalsIgnoreCase("asc")){
+            return peliculaRepositorio.ordenAsc();
+        }else if (orden.equalsIgnoreCase("desc")){
+            return peliculaRepositorio.ordenDesc();
+        }else{
+            return peliculaRepositorio.listAllPeliculas();
+        }
     }
 
     public Pelicula detallesPelicula(String id) {

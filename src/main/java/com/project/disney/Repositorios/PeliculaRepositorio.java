@@ -9,6 +9,7 @@ import com.project.disney.Entidades.Pelicula;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,4 +21,13 @@ public interface PeliculaRepositorio extends JpaRepository<Pelicula, String> {
 
     @Query("SELECT p FROM Pelicula p")
     public List<Pelicula> listAllPeliculas();
+
+    @Query("SELECT p FROM Pelicula p WHERE nombre LIKE :nombre")
+    public List<Pelicula> findByNombre(@Param("nombre") String nombre);
+
+    @Query("SELECT p FROM Pelicula p ORDER BY nombre ASC")
+    public List<Pelicula> ordenAsc();
+
+    @Query("SELECT p FROM Pelicula p ORDER BY nombre DESC")
+    public List<Pelicula> ordenDesc();
 }
