@@ -22,12 +22,12 @@ public interface PeliculaRepositorio extends JpaRepository<Pelicula, String> {
     @Query("SELECT p FROM Pelicula p")
     public List<Pelicula> listAllPeliculas();
 
-    @Query("SELECT p FROM Pelicula p WHERE nombre LIKE :nombre")
-    public List<Pelicula> findByNombre(@Param("nombre") String nombre);
+    @Query("SELECT p FROM Pelicula p WHERE titulo LIKE :titulo")
+    public List<Pelicula> findByNombre(@Param("titulo") String nombre);
 
-    @Query("SELECT p FROM Pelicula p ORDER BY nombre ASC")
+    @Query("SELECT p FROM Pelicula p ORDER BY titulo ASC")
     public List<Pelicula> ordenAsc();
 
-    @Query("SELECT p FROM Pelicula p ORDER BY nombre DESC")
+    @Query("SELECT p FROM Pelicula p ORDER BY titulo DESC")
     public List<Pelicula> ordenDesc();
 }
